@@ -65,6 +65,7 @@ main section {
     flex: 1 1 calc(30% - 20px);
     min-width: 250px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
 }
 
 main section:hover {
@@ -136,4 +137,35 @@ footer {
     padding: 10px 20px;
     margin-top: 20px;
     font-size: 14px;
+}
+
+/* Container principal */
+.sectionIndex {
+    position: relative; /* Necessário para posicionar o tooltip */
+    display: inline-block;
+}
+
+/* Estilo do tooltip */
+.sectionIndex::after {
+    content: attr(data-tooltip); /* Pega o texto do atributo data-tooltip */
+    position: absolute;
+    bottom: 100%; /* Posiciona acima do elemento */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333; /* Fundo escuro */
+    color: #fff; /* Texto branco */
+    padding: 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    font-size: 14px;
+    opacity: 0; /* Invisível por padrão */
+    visibility: hidden; /* Evita cliques */
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    pointer-events: none; /* Evita interferência do mouse */
+}
+
+/* Exibir o tooltip ao passar o mouse */
+.sectionIndex:hover::after {
+    opacity: 1;
+    visibility: visible;
 }
